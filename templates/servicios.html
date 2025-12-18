@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Servicios y Precios{% endblock %}
+
+{% block content %}
+<section class="servicios-page fade-in">
+    <div class="container">
+
+        <!-- TÍTULO PRINCIPAL -->
+        <h2 class="page-title text-center">Servicios & Precios</h2>
+
+        <!-- ===== CATEGORÍA 1: TIPOS DE CORTES ===== -->
+        <div class="categoria-servicios">
+            <h3 class="categoria-titulo">Tipos de Cortes</h3>
+            <div class="servicios-grid">
+                {% for servicio in servicios %}
+                    {% if servicio.categoria == "corte" or not servicio.categoria %}
+                        <div class="card">
+                            <h3>{{ servicio.nombre }}</h3>
+                            {% if servicio.descripcion %}
+                                <p class="descripcion">{{ servicio.descripcion }}</p>
+                            {% endif %}
+                            <div class="precio">$ {{ servicio.precio }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- ===== CATEGORÍA 2: SERVICIOS EXTRAS ===== -->
+        <div class="categoria-servicios">
+            <h3 class="categoria-titulo-extra">Servicios Extras</h3>
+            <div class="servicios-grid">
+                {% for servicio in servicios %}
+                    {% if servicio.categoria == "extra" %}
+                        <div class="card">
+                            <h3>{{ servicio.nombre }}</h3>
+                            {% if servicio.descripcion %}
+                                <p class="descripcion">{{ servicio.descripcion }}</p>
+                            {% endif %}
+                            <div class="precio">$ {{ servicio.precio }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER 2026 -->
+<footer id="contacto" class="footer-2026">
+    <div class="container footer-grid">
+
+        <!-- BLOQUE 1: CONTACTO -->
+        <div class="footer-block">
+            <h3 class="footer-title">Contacto</h3>
+
+            <!-- Teléfono con icono -->
+            <p class="contact-line">
+                <img src="/static/images/icons/telefono.svg" alt="Teléfono" class="contact-icon">
+                <a href="tel:+5355605133">+53 5560 5133</a>
+            </p>
+
+            <!-- Ubicación con icono + enlace a Google Maps -->
+            <p class="contact-line">
+                <img src="/static/images/icons/ubicacion.svg" alt="Ubicación" class="contact-icon">
+                <a href="https://maps.app.goo.gl/NFcngDXYxjaQh3oS6" target="_blank">
+                   Calle 2da # 5 E/Calle A y Calle B, Reparto Primero de Mayo, Nuevitas
+                </a>
+            </p>
+        </div>
+
+        <!-- BLOQUE 2: MÉTODOS DE PAGO -->
+        <div class="footer-block">
+            <h3 class="footer-title">Métodos de Pago</h3>
+
+            <div class="payment-grid-footer">
+                <div class="pay-item-footer">
+                    <img src="/static/images/payments/efectivo-icon.svg" alt="Efectivo"><p>Efectivo</p>
+                </div>
+                <div class="pay-item-footer">
+                    <img src="/static/images/payments/transfermovil-logo.svg" alt="Transfermóvil"><p>Transfermóvil</p>
+                </div>
+                <div class="pay-item-footer">
+                    <img src="/static/images/payments/enzona-logo.svg" alt="Enzona"><p>Enzona</p>
+                </div>
+                <div class="pay-item-footer">
+                    <img src="/static/images/payments/bitcoin-logo.svg" alt="Cripto"><p>Criptomonedas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE 3: HORARIOS -->
+        <div class="footer-block">
+            <h3 class="footer-title">Horarios</h3>
+            <p><strong>Lunes – Viernes:</strong> 9:00 AM – 7:00 PM</p>
+            <p><strong>Sábado:</strong> 9:00 AM – 5:00 PM</p>
+            <p><strong>Domingo:</strong> Cerrado</p>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT - DEBAJO DE TODO Y CENTRADO -->
+    <div class="footer-bottom">
+        <p>© COPYRIGHT 2026 APT BARBER • Todos los derechos reservados</p>
+        <p class="footer-phrase">"Hecho con disciplina, huevos y actitud..."</p>
+    </div>
+</footer>
+
+{% endblock %}

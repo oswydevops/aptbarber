@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+{% block title %}Panel del Dueño{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <div class="container admin-container">
+
+        <!-- HEADER -->
+        <div class="text-center dashboard-header">
+            <h1 class="admin-title">Panel del Administrador</h1>
+            <p class="admin-subtitle">
+                Hola, <strong>{{ current_user.username }}</strong> • 
+                <a href="{{ url_for('admin_logout') }}" class="button-closed">Cerrar sesión</a>
+            </p>
+        </div>
+
+        <!-- NUEVO SERVICIO -->
+        <div class="admin-card card-service">
+            <h2 class="section-title text-center mb-10">Nuevo Servicio</h2>
+
+            <form method="POST" action="{{ url_for('add_service') }}" 
+                  class="admin-grid-4">
+
+                <input type="text" name="nombre" placeholder="Nombre del servicio" required class="input-field">
+                <input type="text" name="precio" placeholder="Precio" required class="input-field">
+                <input type="text" name="descripcion" placeholder="Descripción (opcional)" class="input-field">
+                
+                <select name="categoria" class="input-field">
+                    <option value="corte">Tipos de Cortes</option>
+                    <option value="extra">Servicios Extras</option>
+                </select>
+
+                <div class="full-row text-center">
+                    <button type="submit" class="btn-primary px-10">Agregar Servicio</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- GALERÍA -->
+        <div class="admin-card card-gallery" style="margin-bottom: 1rem;">
+            <h2 class="section-title text-center mb-10">Galería de Trabajos ({{ gallery_images|length }}/10)</h2>
+
+            <!-- Subir -->
+            {% if gallery_images|length < 10 %}
+            <div class="text-center mb-2 mt-1">
+                <form method="POST" action="{{ url_for('upload_gallery') }}" enctype="multipart/form-data">
+                    <input type="file" name="images" multiple accept="image/*" class="file-input">
+                    <button type="submit" class="btn-secondary mt-2 px-10">Subir imágenes</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <!-- GRID -->
+            <div class="gallery-grid">
+                {% for img in gallery_images %}
+                <div class="relative group">
+                    <img src="{{ url_for('static', filename='images/gallery/' + img) }}"
+                         class="gallery-img">
+
+                    <div class="gallery-overlay opacity-0 group-hover:opacity-100 transition">
+                        <a href="{{ url_for('delete_gallery_image', filename=img) }}"
+                           onclick="event.preventDefault(); fetch(this.href, {method: 'GET'}).then(() => location.reload());"
+                           class="delete-btn-gallery">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!-- SERVICIOS ACTUALES -->
+        <h2 class="section-title text-center mb-8">Servicios actuales ({{ servicios|length }})</h2>
+
+        <div class="services-grid">
+            {% for s in servicios %}
+            <div class="service-card">
+                
+                <div class="service-header">
+                    <h3 class="service-name">{{ s.nombre }}</h3>
+                    <span class="tag {{ 'tag-corte' if s.categoria == 'corte' else 'tag-extra' }}">
+                        {{ "Corte" if s.categoria == "corte" else "Extra" }}
+                    </span>
+                </div>
+
+                <div class="price">$ {{ s.precio }}</div>
+
+                <p class="description text-xs text-gray-500 italic">
+                    {% if s.descripcion and s.descripcion.strip() %}
+                        {{ s.descripcion }}
+                    {% else %}
+                        Sin descripción
+                    {% endif %}
+                </p>
+
+                <div class="actions">
+                    <a href="{{ url_for('edit_service', id=s.id) }}" class="btn-small edit-btn">
+                        Editar
+                    </a>
+                    <a href="{{ url_for('delete_service', id=s.id) }}"
+                       onclick="event.preventDefault(); fetch(this.href, {method: 'GET'}).then(() => location.reload());"
+                       class="btn-small delete-btn">
+                        Eliminar
+                    </a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- ESTILOS OPTIMIZADOS -->
+<style>
+/* GENERAL */
+.admin-dashboard {
+    background:#000;
+    min-height:100vh;
+    color:#ddd;
+    font-family:'Inter',sans-serif;
+}
+.admin-container {
+    padding: 7rem 2rem 6rem;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.dashboard-header {
+    margin-bottom: 3rem;
+}
+
+/* TITULOS */
+.admin-title {
+    font:900 4rem/1 'Satoshi',sans-serif;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom: 5px;
+
+    
+}
+.section-title {
+    font:900 2rem 'Satoshi',sans-serif;
+    color:#d4af37;
+    margin-top: -10px;
+}
+
+.admin-subtitle {
+    margin-top: 10px;
+}
+
+
+/* CARDS */
+.admin-card {
+    background:#141414;
+    border:1px solid #333;
+    border-radius:18px;
+    padding: 3rem 4rem;
+    margin-bottom:3rem; 
+}
+
+/* GRID NUEVO SERVICIO */
+.admin-grid-4 {
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    gap:18px;
+}
+@media(min-width:640px){
+    .admin-grid-4 { grid-template-columns:repeat(2,1fr); }
+}
+@media(min-width:1024px){
+    .admin-grid-4 { grid-template-columns:repeat(4,1fr); }
+}
+.full-row { grid-column:1/-1; }
+
+/* INPUTS */
+.input-field {
+    background:#0e0e0e;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:1rem;
+    color:white;
+    margin-top: -50px;
+}
+
+.input-field:focus { border-color:#d4af37; }
+
+/* BOTON AGREGAR SERVICIO*/
+.btn-primary {
+    background:linear-gradient(135deg,#d4af37,#ffb347);
+    color:black;
+    padding:1.1rem 3rem;
+    border:none;
+    border-radius:50px;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary:hover { 
+    transform:translateY(-2px); 
+}
+
+/* BOTON SUBIR IMAGEN*/
+.btn-secondary {
+    background:linear-gradient(135deg,#d4af37,#ffb347);
+    color:black;
+    padding:1.1rem 3rem;
+    border:none;
+    border-radius:50px;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover { 
+    transform:translateY(-2px); 
+}
+
+.file-input {
+    background: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* SERVICIOS ACTUALES */
+.services-grid {
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    gap:45px;
+}    
+@media(min-width:640px){
+    .services-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(min-width:1024px){
+    .services-grid { grid-template-columns:repeat(3,1fr); }
+}
+@media(min-width:1280px){
+    .services-grid { grid-template-columns:repeat(4,1fr); }
+}
+
+.service-card {
+    background:#141414;
+    border:1px solid #333;
+    padding:1.5rem;
+    border-radius:14px;
+    margin-top: -25px;
+}
+
+/* TAGS */
+.tag {
+    padding:3px 10px;
+    border-radius:8px;
+    font-size:.8rem;
+    font-weight:700;
+}
+.tag-corte { background:#1e40af; }
+.tag-extra { background:#7f1d1d; }
+
+/* ACTIONS */
+.btn-edit {
+    color:#4ade80;
+}
+.btn-delete {
+    color:#f87171;
+}
+
+/* --- BOTONES EDITAR Y ELIMINAR (MEJORADOS) --- */
+.btn-small {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:0.45rem 0.8rem;
+    border-radius:10px;
+    font-size:0.85rem;
+    font-weight:700;
+    transition:0.2s;
+    margin-top: 3px;
+    margin-left: 30px;
+}
+
+.edit-btn {
+    background:#1a1a1a;
+    color:#4ade80;
+    border:1px solid #4ade80;
+}
+.edit-btn:hover {
+    background:#4ade80;
+    color:#000;
+}
+
+.delete-btn {
+    background:#1a1a1a;
+    color:#f87171;
+    border:1px solid #f87171;
+    margin-top: 5px;
+}
+.delete-btn:hover {
+    background:#f87171;
+    color:#000;
+}
+
+/* --- GALERÍA MINIMALISTA Y MÁS PEQUEÑA --- */
+.gallery-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+    gap:8px;
+    padding: 0 1rem;
+}
+
+.gallery-img {
+    width:100%;
+    height:90px; 
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid #333;
+    transition: .2s;
+    margin-top: 10px;
+    
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+
+.delete-btn-gallery {
+    background: #ff4444;
+    padding: 4px 9px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    transition: 0.2s;
+    margin-left: 15px;
+}
+
+.delete-btn-gallery:hover {
+    background: #ff2222;
+    transform: scale(1.1);
+}
+
+/* BOTON CERRAR SESIÓN */
+.button-closed {
+    background: #ff4444;
+    padding: 3px 6px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.button-closed:hover { 
+    transform:translateY(-2px); 
+}
+
+/* ELIMINA EL SUBRAYADO DE TODOS LOS ENLACES DENTRO DEL PANEL */
+.admin-dashboard a,
+.admin-card a,
+.service-card a {
+    text-decoration: none !important;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: #aaa;
+    border-top: 1px solid #333;
+    margin-top: 4rem;
+}
+
+/* Responsive dashboard */
+@media (max-width: 1024px) {
+    .admin-container { padding: 6rem 1rem 4rem; }
+    .admin-title { font-size: 3.5rem; }
+    .section-title { font-size: 1.8rem; }
+    .admin-card { padding: 2.5rem 3rem; }
+}
+
+@media (max-width: 768px) {
+    .admin-container { padding: 5rem 1rem 3rem; }
+    .admin-title { font-size: 3rem; }
+    .section-title { font-size: 1.6rem; }
+    .admin-card { padding: 2rem 2rem; }
+    .btn-primary, .btn-secondary { padding: 1rem 2rem; font-size: 0.95rem; }
+    .input-field { padding: 0.9rem; font-size: 0.95rem; }
+}
+
+@media (max-width: 640px) {
+    .admin-grid-4 { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .admin-title { font-size: 2.5rem; }
+    .admin-card { padding: 1.5rem 1.5rem; }
+    .btn-primary, .btn-secondary { padding: 0.9rem 1.5rem; font-size: 0.9rem; }
+    .input-field { padding: 0.8rem; font-size: 0.9rem; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+    .gallery-img { height: 80px; }
+}
+
+@media (max-width: 320px) {
+    .admin-container { padding: 4rem 0.5rem 2rem; }
+    .admin-title { font-size: 2rem; }
+    .admin-card { padding: 1rem; }
+}
+</style>
+
+<!-- FOOTER 2026 -->
+<footer>
+    <!-- COPYRIGHT - DEBAJO DE TODO Y CENTRADO -->
+    <div class="footer">
+        <p>© COPYRIGHT 2026 APT BARBER • Todos los derechos reservados</p>
+        <p class="footer-phrase">"Hecho con disciplina, huevos y actitud..."</p>
+    </div>
+</footer>
+
+{% endblock %}
