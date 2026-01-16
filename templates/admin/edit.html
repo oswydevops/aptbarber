@@ -1,19 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Editar Servicio - Admin{% endblock %}
+{% block title %}Editar Servicio{% endblock %}
 
 {% block content %}
 <div class="admin-dashboard">
     <div class="container" style="padding: 8rem 2rem 6rem; max-width: 900px; margin:0 auto;">
 
         <div class="text-center mb-10">
-            <h1 class="admin-title" style="font-size:4.6rem;">Editar Servicio</h1>
-            <p class="admin-subtitle">
-                <a href="{{ url_for('admin_dashboard') }}" class="logout-link">Volver al panel</a>
-            </p>
+            <h1 class="admin-title" style="font-size:4rem;">Editar Servicio</h1>
         </div>
 
         <div class="admin-card">
-            <form method="POST" action="{{ url_for('edit_service', id=servicio.id) }}">
+            <form method="POST" action="{{ url_for('edit_service', id=servicio.id) }}" class="admin-grid-4">
 
                 <div style="margin-bottom:1.3rem;">
                     <label class="field-label">Nombre del servicio</label>
@@ -48,42 +45,69 @@
 </div>
 
 <style>
-.admin-dashboard { background:#0a0a0a; min-height:100vh; color:white; }
+
+.nav-desktop { display: none !important; }
+.header-inner { justify-content: space-between !important ; }
+.hamburger { display: none !important; }
+
+.admin-dashboard { background:#0a0a0a; min-height:100vh; color:white; display: contents;}
 .admin-title { 
-    font:900 4.0rem/1 'Satoshi',sans-serif; 
+    font:900 4rem 'Satoshi',sans-serif; 
     background: linear-gradient(90deg, #fff, var(--accent));
     -webkit-background-clip:text; 
     -webkit-text-fill-color:transparent; 
+    margin-left: -170px;
+    margin-top: -1rem;
 }
-.admin-subtitle { font-size:1.25rem; opacity:0.85; margin-top:0.5rem; }
-.logout-link { color: white; text-decoration:underline; font-weight:600; } 
+
+
 
 .admin-card { 
     background:rgba(26,26,26,0.7); 
-    backdrop-filter:blur(12px); 
     border:1px solid #333; 
-    border-radius:24px; 
-    padding:3rem; 
-    max-width:700px; 
-    margin-top:10px; 
+    border-radius:18px; 
+    height: 20rem;
+    width: 100rem;
+    padding: 3rem 4rem;
+    margin-bottom: 3rem;
+    margin-left: -175px;
+    margin-top: 1rem;
 }
+
+.admin-grid-4 {
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    gap:10px;
+    justify-items: center;
+    align-items: center;
+}
+@media(min-width:640px){
+    .admin-grid-4 { grid-template-columns:repeat(4,1fr); }
+}
+@media(min-width:1024px){
+    .admin-grid-4 { grid-template-columns:repeat(4,1fr); }
+}
+.full-row { grid-column:1/-1; }
+
 
 .field-label { 
     display:block; 
     margin-bottom:0.6rem; 
     font-size:1.1rem; 
     color:white; 
-    font-weight:600; 
+    font-weight:600;
+    margin-left: 2px;
 }
 
 .input-field { 
-    width:100%; 
     padding:1rem 1.3rem; 
     background:#111; 
     border:1px solid #333; 
     border-radius:14px; 
     color:white; 
     font-size:1.05rem; 
+    width: 200px;
+    
 }
 .input-field:focus { 
     outline:none; 
@@ -101,6 +125,10 @@
     font-weight:700; 
     font-size:1rem; 
     cursor:pointer; 
+    margin-left: 80px;
+
+    
+    
 }
 
 .btn-primary:hover { 
@@ -149,5 +177,23 @@
     .admin-title { font-size: 2.5rem; }
     .admin-card { padding: 1rem; }
 }
+
+.admin-header-right { 
+    font-size: 1.25rem;
+    color: white; 
+    text-decoration: none !important;
+    
+}
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const right = document.createElement('div');
+        right.className = 'admin-header-right';
+        right.innerHTML = `
+            <a href="{{ url_for('admin_dashboard') }}">Volver atrás</a>
+        `;
+        document.querySelector('.header-inner').appendChild(right);
+    });
+</script>
 {% endblock %}

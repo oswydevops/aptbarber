@@ -1,17 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Panel del Dueño{% endblock %}
+{% block title %}Panel de Administrador{% endblock %}
 
 {% block content %}
+
 <div class="admin-dashboard">
     <div class="container admin-container">
 
         <!-- HEADER -->
         <div class="text-center dashboard-header">
-            <h1 class="admin-title">Panel del Administrador</h1>
-            <p class="admin-subtitle">
-                Hola, <strong>{{ current_user.username }}</strong> • 
-                <a href="{{ url_for('admin_logout') }}" class="button-closed">Cerrar sesión</a>
-            </p>
+            <h1 class="admin-title">Administrador</h1>
         </div>
 
         <!-- NUEVO SERVICIO -->
@@ -111,8 +108,28 @@
     </div>
 </div>
 
-<!-- ESTILOS OPTIMIZADOS -->
+<!-- ESTILOS OPTIMIZADOS DASHBOARD ADMIN PANEL-->
 <style>
+
+.admin-header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        font-size: 1.1rem;
+        color: #ddd;
+        margin-right: 5px;
+    }
+.admin-header-right a {
+        color: #ddd;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+.admin-header-right a:hover { opacity: 0.8; }   
+
+.nav-desktop { display: none !important; }
+.header-inner { justify-content: space-between !important; }
+.hamburger { display: none !important; }
+
 /* GENERAL */
 .admin-dashboard {
     background:#000;
@@ -121,9 +138,15 @@
     font-family:'Inter',sans-serif;
 }
 .admin-container {
-    padding: 7rem 2rem 6rem;
+    padding: 7rem 2rem 6rem; /*ANCHO DEL DASHBOARD*/
     max-width: 1350px;
     margin: 0 auto;
+}
+
+.admin-header-right a {
+    color: whitesmoke;
+    text-decoration: none; /* ← Agrega esta línea */
+    font-weight: 600;
 }
 
 /* HEADER */
@@ -133,24 +156,25 @@
 
 /* TITULOS */
 .admin-title {
-    font:900 4rem/1 'Satoshi',sans-serif;
+    font:900 4rem 'Satoshi',sans-serif;
     background: linear-gradient(90deg, #fff, var(--accent));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     margin-bottom: 5px;
-
+    margin-left: 10px;
     
 }
 .section-title {
     font:900 2rem 'Satoshi',sans-serif;
     color:#d4af37;
     margin-top: -10px;
+    text-align: center;
 }
 
 .admin-subtitle {
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-left: 3px;
 }
-
 
 /* CARDS */
 .admin-card {
@@ -165,10 +189,11 @@
 .admin-grid-4 {
     display:grid;
     grid-template-columns:repeat(1,1fr);
-    gap:18px;
+    gap:10px;
+    justify-items: center;
 }
 @media(min-width:640px){
-    .admin-grid-4 { grid-template-columns:repeat(2,1fr); }
+    .admin-grid-4 { grid-template-columns:repeat(4,1fr); }
 }
 @media(min-width:1024px){
     .admin-grid-4 { grid-template-columns:repeat(4,1fr); }
@@ -182,7 +207,8 @@
     border-radius:12px;
     padding:1rem;
     color:white;
-    margin-top: -50px;
+    margin-top:-50px;
+    width: 200px;
 }
 
 .input-field:focus { border-color:#d4af37; }
@@ -327,7 +353,6 @@
     border:1px solid #333;
     transition: .2s;
     margin-top: 10px;
-    
 }
 
 .gallery-img:hover {
@@ -348,21 +373,6 @@
 .delete-btn-gallery:hover {
     background: #ff2222;
     transform: scale(1.1);
-}
-
-/* BOTON CERRAR SESIÓN */
-.button-closed {
-    background: #ff4444;
-    padding: 3px 6px;
-    font-size: 0.85rem;
-    border-radius: 5px;
-    color: white;
-    font-weight: 600;
-    transition: 0.2s;
-}
-
-.button-closed:hover { 
-    transform:translateY(-2px); 
 }
 
 /* ELIMINA EL SUBRAYADO DE TODOS LOS ENLACES DENTRO DEL PANEL */
@@ -418,6 +428,19 @@
     .admin-card { padding: 1rem; }
 }
 </style>
+
+<!-- MUEVE EL SALUDO + LOGOUT AL HEADER -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const right = document.createElement('div');
+        right.className = 'admin-header-right';
+        right.innerHTML = `
+            Hola, <strong>${'{{ current_user.username }}'}</strong> • 
+            <a href="{{ url_for('admin_logout') }}">Cerrar sesión</a>
+        `;
+        document.querySelector('.header-inner').appendChild(right);
+    });
+</script>
 
 <!-- FOOTER 2026 -->
 <footer>

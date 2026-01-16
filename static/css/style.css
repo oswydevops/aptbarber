@@ -75,6 +75,7 @@ h1, h2, h3, h4, h5 {
     object-fit: contain;
     filter: drop-shadow(0 0 8px rgba(212,175,55,0.6));
     margin-bottom: 4px;
+    margin-left: -10px;
 }
 
 .nav-desktop a {
@@ -105,36 +106,36 @@ h1, h2, h3, h4, h5 {
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 6px;
+    gap: 3px;
     cursor: pointer;
     z-index: 1001;
 }
 
 .hamburger span {
-    width: 32px;
+    width: 22px;
     height: 3px;
     background: white;
     border-radius: 3px;
     transition: all 0.4s;
 }
 
-.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(3.5px, -3.5px); }
 
 .mobile-nav {
-    position: fixed;
+    position: fixed;   
     top: 0; left: 0; right: 0; bottom: 0;
     background: #0a0a0a;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
-    font-size: 2.5rem;
+    gap: 1.5rem;
+    font-size: 1.5rem;
     transform: translateY(-100%);
     transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 1000;
+    z-index: 900;
 }
 
 .mobile-nav.active {
@@ -145,7 +146,7 @@ h1, h2, h3, h4, h5 {
     color: white;
     text-decoration: none;
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(10px);
     transition: all 0.6s;
 }
 
@@ -174,15 +175,18 @@ h1, h2, h3, h4, h5 {
     max-width: 1100px;
     padding: 0 2rem;
     z-index: 2;
+    margin-top: 80px;
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 5rem;
     line-height: 0.9;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     background: linear-gradient(90deg, #fff, var(--accent));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    
+    
 }
 
 .small-title {
@@ -195,6 +199,7 @@ h1, h2, h3, h4, h5 {
     background: linear-gradient(90deg, #fff, var(--accent));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    margin-top: 30px;
 }
 
 .big-word {
@@ -204,6 +209,7 @@ h1, h2, h3, h4, h5 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    
 }
 
 .hero-subtitle {
@@ -254,18 +260,29 @@ h1, h2, h3, h4, h5 {
 }
 
 .hero-btn {
-    font-size: 1.5rem !important;
-    padding: 1.6rem 4rem !important;
+    font-size: 1.2rem !important;
+    padding: 1.6rem 3rem !important;
+}
+
+.text-inf {
+    font-size: 1 rem;
+    font-weight: 500px;
+    margin-top: 30px;
+}
+
+.card-text {
+    font-size: 1.5rem;
+    font-weight: 900px;
 }
 
 /* ==================== GALERÍA PREMIUM 2025 ==================== */
 .gallery-section {
-    padding: 10rem 0 8rem;
+    padding: 10rem 0 7rem;
     position: relative;
 }
 
 .section-title {
-    font-size: 4.5rem;
+    font-size: 4rem;
     text-align: center;
     margin-bottom: 5rem;
     background: linear-gradient(90deg, #fff, var(--accent));
@@ -342,7 +359,7 @@ h1, h2, h3, h4, h5 {
     transition: all 0.4s ease;
     display: flex;
     align-items: center;
-    justify: center;
+    justify-items: center;
 }
 
 .gallery-arrow:hover {
@@ -405,12 +422,12 @@ h1, h2, h3, h4, h5 {
 
 .container-servicios {
     max-width: 1000px;
-    margin-top: -10px;
+    margin-top: -20px;
     padding: 5rem 0 1rem;
 }
 
 .page-title {
-    font-size: 4.2rem;
+    font-size: 4rem;
     font-weight: 900px;
     text-align: center;
     margin-bottom: 1.5rem;
@@ -421,13 +438,13 @@ h1, h2, h3, h4, h5 {
 }
 
 .categoria-servicios {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .categoria-titulo {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 7rem;
+    margin-bottom: 3rem;
     background: linear-gradient(90deg, #fff, var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -436,9 +453,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .categoria-titulo-extra {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 7rem;
+    margin-bottom: 3rem;
     background: linear-gradient(90deg, #fff, var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -489,6 +506,7 @@ h1, h2, h3, h4, h5 {
     justify-content: space-between;
     height: 90%;
     width: 100%;
+    border-color: #e6c14a;
 }
 
 .card::before {
@@ -515,7 +533,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .card h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: white;
 }
@@ -529,14 +547,16 @@ h1, h2, h3, h4, h5 {
 }
 
 .precio {
-    font-size: 3.2rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    background: linear-gradient(90deg, #fff, var(--accent));
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin: 1.5rem 0;
     margin-bottom: 10px;
+    text-align: center;
+    justify-items: center;
 }
 
 /* ==================== FOOTER ==================== */
@@ -547,6 +567,7 @@ h1, h2, h3, h4, h5 {
     text-align: center;
     font-size: 1rem;
     opacity: 0.8;
+    
 }
 
 .main-footer p:last-child {
@@ -616,11 +637,15 @@ h1, h2, h3, h4, h5 {
 
 /* Tablet and large mobile */
 @media (max-width: 768px) {
+    .header {margin-left: 65px;}
+    .hamburger {margin-right: 20px;}
+    .hero-title {font-size: 2.5rem; }
+    .section-title {font-size: 3rem;}
     .servicios-page { padding: 8rem 0 6rem; }
-    .page-title { font-size: 3.8rem; }
-    .categoria-titulo { font-size: 3rem; }
+    .page-title { font-size: 3rem; }
+    .categoria-titulo { font-size: 1rem; }
     .card { padding: 2.5rem 1.8rem; }
-    .precio { font-size: 2.8rem; }
+    .precio { font-size: 2rem; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
 }
 

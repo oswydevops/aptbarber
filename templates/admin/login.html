@@ -2,9 +2,13 @@
 {% block title %}Login Admin{% endblock %}
 
 {% block content %}
+<style>
+    .header, .hamburger, .nav-desktop, .mobile-nav { display: none !important; }
+</style>
+
 <div class="container" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
     <form method="POST" style="background: #1a1a1a; padding: 3rem; border-radius: 20px; width: 100%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: #d4af37;">Panel Admin</h2>
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: white;">Login Admin</h2>
         <input type="text" name="username" placeholder="Usuario" required style="width: 100%; padding: 1rem; margin-bottom: 1rem; background: #111; border: 1px solid #333; border-radius: 8px; color: white; font-size: 1rem;">
         <input type="password" name="password" placeholder="Contraseña" required style="width: 100%; padding: 1rem; margin-bottom: 2rem; background: #111; border: 1px solid #333; border-radius: 8px; color: white; font-size: 1rem;">
         <button type="submit" style="width: 100%; background: #d4af37; color: black; padding: 1rem; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; transition: background 0.3s;">Ingresar</button>
