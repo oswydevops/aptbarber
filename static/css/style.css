@@ -505,7 +505,7 @@ h1, h2, h3, h4, h5 {
     flex-direction: column;
     justify-content: space-between;
     height: 90%;
-    width: 100%;
+    width: 90%;
     border-color: #e6c14a;
 }
 
