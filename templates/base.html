@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="APT Barber - Barbería Premium en Nuevitas">
+    <meta name="theme-color" content="#0f0f0f">
     <title>{% block title %}APT BARBER{% endblock %}</title>
-    <!-- FAVICON PARA TODAS LAS PÁGINAS -->
+
+    <!-- FAVICONS -->
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Satoshi:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Satoshi:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
+    <!-- HEADER / NAVEGACIÓN -->
     <header class="header">
-    <div class="container header-inner">
-        <!-- Logo / Nombre -->
-        <a href="/" class="logo">
-           <img src="/static/images/logo-apt.svg" alt="Barbershop" class="logo-icon">
-           APT BARBER
-        </a>
+        <div class="container header-inner">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <img src="/static/images/logo-apt.svg" alt="APT Barber Logo" class="logo__icon">
+                <span>APT BARBER</span>
+            </a>
 
-        <!-- Navegación desktop -->
-        <nav class="nav-desktop">
-            <a href="/">Inicio</a>
-            <a href="/servicios">Servicios</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+            <!-- Navegación Desktop -->
+            <nav class="nav-desktop">
+                <a href="/" class="nav-desktop__link">Inicio</a>
+                <a href="/servicios" class="nav-desktop__link">Servicios</a>
+                <a href="#contacto" class="nav-desktop__link">Contacto</a>
+            </nav>
 
-        <!-- Botón hamburguesa móvil -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <!-- Hamburger Menu (Móvil) -->
+            <button class="hamburger" id="hamburger" aria-label="Menú de navegación" aria-expanded="false">
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+            </button>
         </div>
-    </div>
 
-    <!-- Menú móvil full screen (aparece al hacer clic) -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="/">Inicio</a>
-        <a href="/servicios">Servicios</a>
-        <a href="/contacto">Contacto</a>
-    </div>
-</header>
+        <!-- Menú Móvil -->
+        <nav class="mobile-nav" id="mobileNav" aria-label="Menú de navegación móvil">
+            <a href="/" class="mobile-nav__link">Inicio</a>
+            <a href="/servicios" class="mobile-nav__link">Servicios</a>
+            <a href="#contacto" class="mobile-nav__link">Contacto</a>
+        </nav>
+    </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
+    <!-- JAVASCRIPT -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>

@@ -9,13 +9,16 @@
             Bienvenido a tu barbería, tu casa<br>
         </h1>
         <p class="hero-subtitle">Estilo • Precisión • Actitud</p>
-        
-        <a href="https://wa.me/+5355605133?text=¡Hola!%20Quiero%20reservar%20una%20cita%20🙂" 
-           class="btn-whatsapp hero-btn">
+
+        <a href="https://wa.me/+5355605133?text=¡Hola!%20Quiero%20reservar%20una%20cita%20🙂"
+            class="btn-whatsapp hero-btn">
             Reservar Cita por WhatsApp
         </a>
 
-        <p class="text-inf"> Una vez usted vaya hacer la reserva del turno deberá pagar un monto de 200 CUP por adelantado a la tarjeta indicada o también podra pasarse por dicho estblecimiento a pagar en efectivo (este pago es ajeno a los precios de los servicios), si usted reserva el turno y no pasa perderá su turno y el monto pagado. Gracias de antemano 👍</p>
+        <p class="text-info">Una vez usted vaya hacer la reserva del turno deberá pagar un monto de 200 CUP por
+            adelantado a la tarjeta indicada o también podra pasarse por dicho estblecimiento a pagar en efectivo (este
+            pago es ajeno a los precios de los servicios), si usted reserva el turno y no pasa perderá su turno y el
+            monto pagado. Gracias de antemano 👍</p>
         <p class="card-text"> xxxx xxxx xxxx xxxx </p>
     </div>
 </section>
@@ -24,17 +27,17 @@
 <section class="gallery-section">
     <div class="container">
         <h2 class="section-title fade-in">Nuestros Trabajos</h2>
-        
+
         <div class="gallery-wrapper">
             <button class="gallery-arrow arrow-left" id="prevBtn">
                 <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M15 18l-6-6 6-6"/>
+                    <path d="M15 18l-6-6 6-6" />
                 </svg>
             </button>
 
             <button class="gallery-arrow arrow-right" id="nextBtn">
                 <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M9 18l6-6-6-6"/>
+                    <path d="M9 18l6-6-6-6" />
                 </svg>
             </button>
 
@@ -42,23 +45,22 @@
                 <div class="gallery-track" id="galleryTrack">
                     {% set ns = namespace(found=0) %}
                     {% for img in gallery_images %}
-                        {% if ns.found < 10 %}
-                            <div class="gallery-item">
-                                <img src="{{ url_for('static', filename='images/gallery/' ~ img) }}" 
-                                     alt="Trabajo APT Barber" loading="lazy">
-                            </div>
-                            {% set ns.found = ns.found + 1 %}
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if ns.found == 0 %}
-                        <div class="gallery-item text-center text-gray-500 py-32 w-full">
-                            <p class="text-2xl">Aún no hay trabajos en la galería</p>
-                        </div>
-                    {% endif %}
+                    {% if ns.found < 10 %} <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='images/gallery/' ~ img) }}" alt="Trabajo APT Barber"
+                            loading="lazy">
                 </div>
+                {% set ns.found = ns.found + 1 %}
+                {% endif %}
+                {% endfor %}
+
+                {% if ns.found == 0 %}
+                <div class="gallery-item text-center text-gray-500 py-32 w-full">
+                    <p class="text-2xl">Aún no hay trabajos en la galería</p>
+                </div>
+                {% endif %}
             </div>
         </div>
+    </div>
     </div>
 
 </section>
@@ -73,110 +75,126 @@
 </div>
 
 <script>
-// SCROLL SUAVE CON FLECHAS
-document.getElementById('prevBtn').onclick = () => {
-    document.getElementById('galleryTrack').scrollBy({ left: -380, behavior: 'smooth' });
-};
-document.getElementById('nextBtn').onclick = () => {
-    document.getElementById('galleryTrack').scrollBy({ left: 380, behavior: 'smooth' });
-};
+    // SCROLL SUAVE CON FLECHAS
+    document.getElementById('prevBtn').onclick = () => {
+        document.getElementById('galleryTrack').scrollBy({ left: -380, behavior: 'smooth' });
+    };
+    document.getElementById('nextBtn').onclick = () => {
+        document.getElementById('galleryTrack').scrollBy({ left: 380, behavior: 'smooth' });
+    };
 
-// LIGHTBOX – FUNCIONA PERFECTO CON LAS NUEVAS FOTOS
-document.addEventListener("DOMContentLoaded", function () {
-    const imgs = document.querySelectorAll('.gallery-item img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const caption = document.getElementById('lightbox-caption');
-    const close = document.querySelector('.lightbox-close');
-    let currentIndex = 0;
+    // LIGHTBOX – FUNCIONA PERFECTO CON LAS NUEVAS FOTOS
+    document.addEventListener("DOMContentLoaded", function () {
+        const imgs = document.querySelectorAll('.gallery-item img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const caption = document.getElementById('lightbox-caption');
+        const close = document.querySelector('.lightbox-close');
+        let currentIndex = 0;
 
-    imgs.forEach((img, i) => {
-        img.onclick = function(e) {
-            e.stopPropagation();
-            currentIndex = i;
-            lightboxImg.src = this.src;
-            caption.textContent = this.alt || "APT Barber";
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        imgs.forEach((img, i) => {
+            img.onclick = function (e) {
+                e.stopPropagation();
+                currentIndex = i;
+                lightboxImg.src = this.src;
+                caption.textContent = this.alt || "APT Barber";
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+        });
+
+        close.onclick = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
         };
+
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox) {
+                close.click();
+            }
+        };
+
+        document.querySelector('.lightbox-nav.left').onclick = () => {
+            currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
+            lightboxImg.src = imgs[currentIndex].src;
+            caption.textContent = imgs[currentIndex].alt;
+        };
+
+        document.querySelector('.lightbox-nav.right').onclick = () => {
+            currentIndex = (currentIndex + 1) % imgs.length;
+            lightboxImg.src = imgs[currentIndex].src;
+            caption.textContent = imgs[currentIndex].alt;
+        };
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') close.click();
+            if (e.key === 'ArrowLeft') document.querySelector('.lightbox-nav.left').click();
+            if (e.key === 'ArrowRight') document.querySelector('.lightbox-nav.right').click();
+        });
     });
-
-    close.onclick = () => {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    };
-
-    lightbox.onclick = (e) => {
-        if (e.target === lightbox) {
-            close.click();
-        }
-    };
-
-    document.querySelector('.lightbox-nav.left').onclick = () => {
-        currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
-        lightboxImg.src = imgs[currentIndex].src;
-        caption.textContent = imgs[currentIndex].alt;
-    };
-
-    document.querySelector('.lightbox-nav.right').onclick = () => {
-        currentIndex = (currentIndex + 1) % imgs.length;
-        lightboxImg.src = imgs[currentIndex].src;
-        caption.textContent = imgs[currentIndex].alt;
-    };
-
-    document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') close.click();
-        if (e.key === 'ArrowLeft') document.querySelector('.lightbox-nav.left').click();
-        if (e.key === 'ArrowRight') document.querySelector('.lightbox-nav.right').click();
-    });
-});
 </script>
 
 <style>
-/* LIGHTBOX ESTILO ORIGINAL */
-.lightbox {
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.95);
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-    padding:20px;
-}
-.lightbox.active { display:flex; }
-.lightbox-content { max-width:90%; max-height:85vh; border-radius:20px; }
-.lightbox-close {
-    position:absolute;
-    top:20px;
-    right:30px;
-    font-size:50px;
-    color:white;
-    cursor:pointer;
-    font-weight:300;
-}
-.lightbox-nav {
-    position:absolute;
-    top:50%;
-    font-size:60px;
-    color:white;
-    cursor:pointer;
-    user-select:none;
-    padding:0 20px;
-}
-.lightbox-nav.left { left:20px; }
-.lightbox-nav.right { right:20px; }
-.lightbox-caption {
-    position:absolute;
-    bottom:30px;
-    color:white;
-    font-size:1.2rem;
-    background:rgba(0,0,0,0.5);
-    padding:10px 20px;
-    border-radius:12px;
-}
+    /* LIGHTBOX ESTILO ORIGINAL */
+    .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 20px;
+    }
 
+    .lightbox.active {
+        display: flex;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 85vh;
+        border-radius: 20px;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 50px;
+        color: white;
+        cursor: pointer;
+        font-weight: 300;
+    }
+
+    .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        font-size: 60px;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        padding: 0 20px;
+    }
+
+    .lightbox-nav.left {
+        left: 20px;
+    }
+
+    .lightbox-nav.right {
+        right: 20px;
+    }
+
+    .lightbox-caption {
+        position: absolute;
+        bottom: 30px;
+        color: white;
+        font-size: 1.2rem;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 12px;
+    }
 </style>
 
 <!-- FOOTER 2026 -->
@@ -196,8 +214,9 @@ document.addEventListener("DOMContentLoaded", function () {
             <!-- Ubicación con icono + enlace a Google Maps -->
             <p class="contact-line">
                 <img src="/static/images/icons/ubicacion.svg" alt="Ubicación" class="contact-icon">
-                <a href="https://www.google.com/maps/place/21%C2%B032'54.6%22N+77%C2%B016'24.9%22W/@21.548497,-77.2738742,19z/data=!4m4!3m3!8m2!3d21.5485!4d-77.2735833?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D" target="_blank">
-                   Calle 2da # 5 E/Calle A y Calle B, Reparto Primero de Mayo, Nuevitas
+                <a href="https://www.google.com/maps/place/21%C2%B032'54.6%22N+77%C2%B016'24.9%22W/@21.548497,-77.2738742,19z/data=!4m4!3m3!8m2!3d21.5485!4d-77.2735833?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D"
+                    target="_blank">
+                    Calle 2da # 5 E/Calle A y Calle B, Reparto Primero de Mayo, Nuevitas
                 </a>
             </p>
         </div>
@@ -208,16 +227,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             <div class="payment-grid-footer">
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/efectivo-icon.svg" alt="Efectivo"><p>Efectivo</p>
+                    <img src="/static/images/payments/efectivo-icon.svg" alt="Efectivo">
+                    <p>Efectivo</p>
                 </div>
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/transfermovil-logo.svg" alt="Transfermóvil"><p>Transfermóvil</p>
+                    <img src="/static/images/payments/transfermovil-logo.svg" alt="Transfermóvil">
+                    <p>Transfermóvil</p>
                 </div>
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/enzona-logo.svg" alt="Enzona"><p>Enzona</p>
+                    <img src="/static/images/payments/enzona-logo.svg" alt="Enzona">
+                    <p>Enzona</p>
                 </div>
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/bitcoin-logo.svg" alt="Cripto"><p>Criptomonedas</p>
+                    <img src="/static/images/payments/bitcoin-logo.svg" alt="Cripto">
+                    <p>Criptomonedas</p>
                 </div>
             </div>
         </div>

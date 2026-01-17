@@ -13,15 +13,15 @@
             <h3 class="categoria-titulo">Tipos de Cortes</h3>
             <div class="servicios-grid">
                 {% for servicio in servicios %}
-                    {% if servicio.categoria == "corte" or not servicio.categoria %}
-                        <div class="card">
-                            <h3>{{ servicio.nombre }}</h3>
-                            {% if servicio.descripcion %}
-                                <p class="descripcion">{{ servicio.descripcion }}</p>
-                            {% endif %}
-                            <div class="precio">$ {{ servicio.precio }}</div>
-                        </div>
+                {% if servicio.categoria == "corte" or not servicio.categoria %}
+                <div class="card">
+                    <h3>{{ servicio.nombre }}</h3>
+                    {% if servicio.descripcion %}
+                    <p class="card__description">{{ servicio.descripcion }}</p>
                     {% endif %}
+                    <div class="card__price">$ {{ servicio.precio }}</div>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -31,15 +31,15 @@
             <h3 class="categoria-titulo-extra">Servicios Extras</h3>
             <div class="servicios-grid">
                 {% for servicio in servicios %}
-                    {% if servicio.categoria == "extra" %}
-                        <div class="card">
-                            <h3>{{ servicio.nombre }}</h3>
-                            {% if servicio.descripcion %}
-                                <p class="descripcion">{{ servicio.descripcion }}</p>
-                            {% endif %}
-                            <div class="precio">$ {{ servicio.precio }}</div>
-                        </div>
+                {% if servicio.categoria == "extra" %}
+                <div class="card">
+                    <h3>{{ servicio.nombre }}</h3>
+                    {% if servicio.descripcion %}
+                    <p class="card__description">{{ servicio.descripcion }}</p>
                     {% endif %}
+                    <div class="card__price">$ {{ servicio.precio }}</div>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -65,7 +65,7 @@
             <p class="contact-line">
                 <img src="/static/images/icons/ubicacion.svg" alt="Ubicación" class="contact-icon">
                 <a href="https://maps.app.goo.gl/NFcngDXYxjaQh3oS6" target="_blank">
-                   Calle 2da # 5 E/Calle A y Calle B, Reparto Primero de Mayo, Nuevitas
+                    Calle 2da # 5 E/Calle A y Calle B, Reparto Primero de Mayo, Nuevitas
                 </a>
             </p>
         </div>
@@ -76,16 +76,20 @@
 
             <div class="payment-grid-footer">
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/efectivo-icon.svg" alt="Efectivo"><p>Efectivo</p>
+                    <img src="/static/images/payments/efectivo-icon.svg" alt="Efectivo">
+                    <p>Efectivo</p>
                 </div>
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/transfermovil-logo.svg" alt="Transfermóvil"><p>Transfermóvil</p>
+                    <img src="/static/images/payments/transfermovil-logo.svg" alt="Transfermóvil">
+                    <p>Transfermóvil</p>
                 </div>
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/enzona-logo.svg" alt="Enzona"><p>Enzona</p>
+                    <img src="/static/images/payments/enzona-logo.svg" alt="Enzona">
+                    <p>Enzona</p>
                 </div>
                 <div class="pay-item-footer">
-                    <img src="/static/images/payments/bitcoin-logo.svg" alt="Cripto"><p>Criptomonedas</p>
+                    <img src="/static/images/payments/bitcoin-logo.svg" alt="Cripto">
+                    <p>Criptomonedas</p>
                 </div>
             </div>
         </div>
