@@ -16,35 +16,41 @@
 </head>
 <body>
     <header class="header">
-    <div class="container header-inner">
-        <!-- Logo / Nombre -->
-        <a href="/" class="logo">
-           <img src="/static/images/logo-apt.svg" alt="Barbershop" class="logo-icon">
-           APT BARBER
-        </a>
+        <div class="container header-inner">
+            <!-- Logo / Nombre -->
+            <a href="{{ url_for('main.index') }}" class="logo">
+               <img src="{{ url_for('static', filename='images/logo-apt.svg') }}" alt="Barbershop" class="logo-icon">
+               APT BARBER
+            </a>
 
-        <!-- Navegación desktop -->
-        <nav class="nav-desktop">
-            <a href="/">Inicio</a>
-            <a href="/servicios">Servicios</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+            <!-- Navegación desktop -->
+            <nav class="nav-desktop">
+                <a href="{{ url_for('main.index') }}">Inicio</a>
+                <a href="{{ url_for('main.servicios') }}">Servicios</a>
+                <a href="#contacto">Contacto</a>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('admin.dashboard') }}">Admin</a>
+                {% endif %}
+            </nav>
 
-        <!-- Botón hamburguesa móvil -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <!-- Botón hamburguesa móvil -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </div>
 
-    <!-- Menú móvil full screen (aparece al hacer clic) -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="/">Inicio</a>
-        <a href="/servicios">Servicios</a>
-        <a href="/contacto">Contacto</a>
-    </div>
-</header>
+        <!-- Menú móvil full screen (aparece al hacer clic) -->
+        <div class="mobile-nav" id="mobileNav">
+            <a href="{{ url_for('main.index') }}">Inicio</a>
+            <a href="{{ url_for('main.servicios') }}">Servicios</a>
+            <a href="#contacto">Contacto</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('admin.dashboard') }}">Admin</a>
+            {% endif %}
+        </div>
+    </header>
 
     <main>
         {% block content %}{% endblock %}
