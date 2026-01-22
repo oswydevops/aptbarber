@@ -1,21 +1,12 @@
 """
-Punto de entrada principal de la aplicación
-Usa el Application Factory Pattern
+Punto de entrada WSGI para producción
+Uso: gunicorn wsgi:app
 """
 import os
-import sys
-
-# Agregar el directorio actual al PATH
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 from app.core.factory import create_app
 
-# Crear la aplicación
-app = create_app(os.environ.get('FLASK_ENV', 'development'))
+# Crear la aplicación para producción por defecto
+app = create_app(os.environ.get('FLASK_ENV', 'production'))
 
-if __name__ == '__main__':
-    """
-    Ejecutar la aplicación en modo desarrollo
-    Para producción, usar gunicorn o similar
-    """
-    app.run(debug=True, host='0.0.0.0', port=5000)
+# Este archivo está pensado para servidores WSGI (gunicorn, uWSGI).
+# Para desarrollo, use `python run.py`.
