@@ -10,7 +10,10 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route('/')
 def index():
     """Página de inicio"""
-    return render_template('index.html')
+    from app.services.service_locator import get_galeria_service
+    galeria_service = get_galeria_service()
+    gallery_images = galeria_service.obtener_galeria()
+    return render_template('index.html', gallery_images=gallery_images)
 
 
 @main_bp.route('/servicios')

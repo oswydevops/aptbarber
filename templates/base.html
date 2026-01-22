@@ -56,6 +56,25 @@
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Core system (always loaded first) -->
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <!-- Main functionality (always loaded) -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- Gallery functionality -->
+    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+
+    <!-- Animations -->
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+
+    <!-- Admin functionality -->
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+
+    <!-- Diagnostic script (development only) -->
+    <script src="{{ url_for('static', filename='js/diagnostic.js') }}"></script>
 </body>
 </html>

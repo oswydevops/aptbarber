@@ -15,8 +15,8 @@
         <div class="admin-card card-service">
             <h2 class="section-title text-center mb-10">Nuevo Servicio</h2>
 
-            <form method="POST" action="{{ url_for('admin.crear_servicio') }}" 
-                  class="admin-grid-4">
+            <form method="POST" action="{{ url_for('admin.crear_servicio') }}"
+                  class="admin-form validate-form admin-grid-4">
 
                 <input type="text" name="nombre" placeholder="Nombre del servicio" required class="input-field">
                 <input type="text" name="precio" placeholder="Precio" required class="input-field">
@@ -55,11 +55,13 @@
                          class="gallery-img">
 
                     <div class="gallery-overlay opacity-0 group-hover:opacity-100 transition">
-                        <a href="{{ url_for('admin.eliminar_galeria', filename=img) }}"
-                           onclick="event.preventDefault(); fetch(this.href, {method: 'GET'}).then(() => location.reload());"
-                           class="delete-btn-gallery">
-                            Eliminar
-                        </a>
+                     <a href="{{ url_for('admin.eliminar_galeria', filename=img) }}"
+                            data-action="delete"
+                            data-type="imagen"
+                            data-name="{{ img }}"
+                            class="delete-btn-gallery">
+                             Eliminar
+                         </a>
                     </div>
                 </div>
                 {% endfor %}
@@ -96,10 +98,12 @@
                         Editar
                     </a>
                     <a href="{{ url_for('admin.eliminar_servicio', servicio_id=s.id) }}"
-                       onclick="event.preventDefault(); fetch(this.href, {method: 'GET'}).then(() => location.reload());"
-                       class="btn-small delete-btn">
-                        Eliminar
-                    </a>
+                        data-action="delete"
+                        data-type="servicio"
+                        data-name="{{ s.nombre }}"
+                        class="btn-small delete-btn">
+                         Eliminar
+                     </a>
                 </div>
 
             </div>
@@ -435,8 +439,13 @@
         const right = document.createElement('div');
         right.className = 'admin-header-right';
         right.innerHTML = `
-            Hola, <strong>${ '{{ current_user.username }}' }</strong> • 
+            Hola, <strong>{{ current_user.username }}</strong> •
             <a href="{{ url_for('admin.logout') }}">Cerrar sesión</a>
+        `;
+        document.querySelector('.header-inner').appendChild(right);
+    });
+</script>
+
 <!-- FOOTER 2026 -->
 <footer>
     <!-- COPYRIGHT - DEBAJO DE TODO Y CENTRADO -->

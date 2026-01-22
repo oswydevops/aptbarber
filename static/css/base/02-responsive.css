@@ -1,17 +1,38 @@
 /* ================================================ */
-/* RESPONSIVE - MEDIAQUERIESGENÉRICAS               */
+/* RESPONSIVE - MEDIA QUERIES CENTRALIZADAS        */
 /* ================================================ */
 
-/* === PC 18" y superior (2560px+) === */
+/* === PRINCIPIOS DE RESPONSIVE === */
+/* Mobile-first approach */
+/* Breakpoints basados en contenido, no dispositivos */
+/* Mejora progresiva para pantallas más grandes */
+
+/* === ULTRAWIDE & 4K (2560px+) === */
 @media (min-width: 2560px) {
     .container {
-        max-width: 1800px;
+        max-width: 2000px;
+        padding: 0 3rem;
     }
     .hero-title {
-        font-size: 5rem;
+        font-size: 6rem;
+        line-height: 1.1;
     }
     .big-word {
-        font-size: 13rem;
+        font-size: 14rem;
+    }
+    .hero-subtitle {
+        font-size: 1.8rem;
+    }
+    .hero-btn {
+        font-size: 1.4rem;
+        padding: 1.5rem 3rem;
+    }
+    /* Mejorar legibilidad en pantallas grandes */
+    .section-title {
+        font-size: 4rem;
+    }
+    .card {
+        padding: 3.5rem 2.5rem;
     }
 }
 
@@ -65,74 +86,143 @@
 
 /* === TABLET & MOBILE GRANDE (868px) === */
 @media (max-width: 868px) {
+    /* Navegación */
     .nav-desktop {
-        display: none;
+        display: none !important;
     }
     .hamburger {
-        display: flex;
+        display: flex !important;
     }
+
+    /* Hero section */
     .hero-title {
-        font-size: 5.5rem;
+        font-size: 4.5rem;
+        line-height: 1.2;
     }
     .big-word {
-        font-size: 7rem;
+        font-size: 6.5rem;
     }
     .small-title {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
     .hero-subtitle {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        line-height: 1.4;
     }
+    .hero-btn {
+        font-size: 1.1rem;
+        padding: 1.2rem 2.5rem;
+        margin-top: 1rem;
+    }
+
+    /* Secciones */
     .section-title {
-        font-size: 3.5rem;
-        margin-bottom: 3rem;
+        font-size: 3rem;
+        margin-bottom: 2.5rem;
     }
     .gallery-section {
-        padding: 8rem 0 6rem;
+        padding: 6rem 0 4rem;
+    }
+
+    /* Mejorar touch targets */
+    .btn-primary, .btn-whatsapp {
+        min-height: 48px;
+        padding: 1rem 2rem;
+    }
+
+    /* Ajustar espaciado para tablets */
+    .section {
+        padding: 4rem 0;
     }
 }
 
 /* === TABLET (768px) === */
 @media (max-width: 768px) {
+    /* Header y navegación */
     .header {
         margin-left: 65px;
     }
     .hamburger {
         margin-right: 20px;
+        right: 15px;
     }
+
+    /* Hero section optimizado para tablets */
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        line-height: 1.2;
     }
+    .big-word {
+        font-size: 4.5rem;
+    }
+    .small-title {
+        font-size: 1.3rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .hero-btn {
+        font-size: 1.1rem;
+        padding: 1.1rem 2rem;
+    }
+
+    /* Contenido principal */
     .section-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
     }
     .servicios-page {
-        padding: 8rem 0 6rem;
+        padding: 6rem 0 4rem;
     }
     .page-title {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
     .categoria-titulo {
-        font-size: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
     }
+
+    /* Cards y grid */
     .card {
-        padding: 2.5rem 1.8rem;
+        padding: 2.2rem 1.5rem;
+        margin-bottom: 2rem;
     }
     .precio {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
+    .servicios-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    /* Footer */
     .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
     .footer-2026 {
-        padding: 50px 0 30px;
+        padding: 40px 0 25px;
     }
+
+    /* Admin panel */
     .admin-container {
         padding: 5rem 1rem 3rem;
     }
     .admin-title {
         font-size: 3rem;
+    }
+
+    /* Mejorar interacción táctil */
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Ajustar espaciado para mejor lectura */
+    .container {
+        padding: 0 1.5rem;
     }
 }
 
