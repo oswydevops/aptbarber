@@ -1,0 +1,100 @@
+/* ================================================ */
+/* LAYOUTS - PÁGINA PRINCIPAL                       */
+/* ================================================ */
+
+/* === SECCIÓN HERO === */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/images/hero.jpg') center / cover no-repeat;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 1100px;
+    padding: 0 2rem;
+    z-index: 2;
+    margin-top: 80px;
+}
+
+/* === TÍTULOS HERO === */
+.hero-title {
+    font-size: 5rem;
+    line-height: 0.9;
+    margin-bottom: 3rem;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.small-title {
+    font-size: 2.2rem;
+    display: block;
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 4px;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 30px;
+}
+
+.big-word {
+    font-size: 11rem;
+    display: block;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+    opacity: 0.85;
+    letter-spacing: 3px;
+    font-weight: 400;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* === TEXTOS INFORMATIVOS HERO === */
+.text-inf {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.card-text {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+/* === SECCIÓN TÍTULOS === */
+.section-title {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: -50px;
+}
+
+/* === ANIMACIONES === */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

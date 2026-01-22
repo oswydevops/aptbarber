@@ -10,7 +10,7 @@
         </div>
 
         <div class="admin-card">
-            <form method="POST" action="{{ url_for('edit_service', id=servicio.id) }}" class="admin-grid-4">
+            <form method="POST" action="{{ url_for('admin.editar_servicio', servicio_id=servicio.id) }}" class="admin-grid-4">
 
                 <div style="margin-bottom:1.3rem;">
                     <label class="field-label">Nombre del servicio</label>
@@ -37,7 +37,7 @@
 
                 <div style="display:flex; gap:1rem; justify-content:center;">
                     <button type="submit" class="btn-primary">Guardar Cambios</button>
-                    <a href="{{ url_for('admin_dashboard') }}" class="btn-secondary">Cancelar</a>
+                    <a href="{{ url_for('admin.dashboard') }}" class="btn-secondary">Cancelar</a>
                 </div>
             </form>
         </div>
@@ -187,7 +187,7 @@
         const right = document.createElement('div');
         right.className = 'admin-header-right';
         right.innerHTML = `
-            <a href="{{ url_for('admin_dashboard') }}">Volver atrás</a>
+            <a href="{{ url_for('admin.dashboard') }}">Volver atrás</a>
         `;
         document.querySelector('.header-inner').appendChild(right);
     });

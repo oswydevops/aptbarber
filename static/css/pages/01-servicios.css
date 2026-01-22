@@ -1,0 +1,74 @@
+/* ================================================ */
+/* PÁGINAS - SERVICIOS                              */
+/* ================================================ */
+
+.servicios-page {
+    padding: 8rem 0;
+    min-height: 100vh;
+}
+
+.container-servicios {
+    max-width: 1000px;
+    margin-top: -20px;
+    padding: 5rem 0 1rem;
+}
+
+/* === TÍTULO PÁGINA SERVICIOS === */
+.page-title {
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* === CATEGORÍAS === */
+.categoria-servicios {
+    margin-bottom: 3rem;
+}
+
+.categoria-titulo {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.categoria-titulo-extra {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    margin-top: -50px;
+}
+
+.categoria-titulo::after,
+.categoria-titulo-extra::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 4px;
+    background: var(--accent);
+    margin: 1.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* === GRID SERVICIOS === */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 0 var(--spacing-md);
+    align-items: stretch;
+}

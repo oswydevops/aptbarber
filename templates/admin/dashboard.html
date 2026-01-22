@@ -15,7 +15,7 @@
         <div class="admin-card card-service">
             <h2 class="section-title text-center mb-10">Nuevo Servicio</h2>
 
-            <form method="POST" action="{{ url_for('add_service') }}" 
+            <form method="POST" action="{{ url_for('admin.crear_servicio') }}" 
                   class="admin-grid-4">
 
                 <input type="text" name="nombre" placeholder="Nombre del servicio" required class="input-field">
@@ -40,7 +40,7 @@
             <!-- Subir -->
             {% if gallery_images|length < 10 %}
             <div class="text-center mb-2 mt-1">
-                <form method="POST" action="{{ url_for('upload_gallery') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url_for('admin.subir_galeria') }}" enctype="multipart/form-data">
                     <input type="file" name="images" multiple accept="image/*" class="file-input">
                     <button type="submit" class="btn-secondary mt-2 px-10">Subir imágenes</button>
                 </form>
@@ -55,7 +55,7 @@
                          class="gallery-img">
 
                     <div class="gallery-overlay opacity-0 group-hover:opacity-100 transition">
-                        <a href="{{ url_for('delete_gallery_image', filename=img) }}"
+                        <a href="{{ url_for('admin.eliminar_galeria', filename=img) }}"
                            onclick="event.preventDefault(); fetch(this.href, {method: 'GET'}).then(() => location.reload());"
                            class="delete-btn-gallery">
                             Eliminar
@@ -92,10 +92,10 @@
                 </p>
 
                 <div class="actions">
-                    <a href="{{ url_for('edit_service', id=s.id) }}" class="btn-small edit-btn">
+                    <a href="{{ url_for('admin.editar_servicio', servicio_id=s.id) }}" class="btn-small edit-btn">
                         Editar
                     </a>
-                    <a href="{{ url_for('delete_service', id=s.id) }}"
+                    <a href="{{ url_for('admin.eliminar_servicio', servicio_id=s.id) }}"
                        onclick="event.preventDefault(); fetch(this.href, {method: 'GET'}).then(() => location.reload());"
                        class="btn-small delete-btn">
                         Eliminar
@@ -435,13 +435,8 @@
         const right = document.createElement('div');
         right.className = 'admin-header-right';
         right.innerHTML = `
-            Hola, <strong>${'{{ current_user.username }}'}</strong> • 
-            <a href="{{ url_for('admin_logout') }}">Cerrar sesión</a>
-        `;
-        document.querySelector('.header-inner').appendChild(right);
-    });
-</script>
-
+            Hola, <strong>${ '{{ current_user.username }}' }</strong> • 
+            <a href="{{ url_for('admin.logout') }}">Cerrar sesión</a>
 <!-- FOOTER 2026 -->
 <footer>
     <!-- COPYRIGHT - DEBAJO DE TODO Y CENTRADO -->

@@ -1,0 +1,129 @@
+/* ================================================ */
+/* COMPONENTES - TARJETAS                           */
+/* ================================================ */
+
+/* === TARJETA DE SERVICIO === */
+.card {
+    background: linear-gradient(135deg, #1a1a1a, #111);
+    padding: 3rem 2.2rem;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    border: 1px solid var(--accent);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    width: 90%;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    border-color: var(--accent);
+    box-shadow: 0 25px 60px rgba(212, 175, 55, 0.25);
+    background: linear-gradient(135deg, #222, #1a1a1a);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: white;
+}
+
+/* === DESCRIPCIÓN === */
+.descripcion {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    margin: var(--spacing-lg) 0;
+    min-height: 50px;
+    line-height: 1.6;
+}
+
+/* === PRECIO === */
+.precio {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+/* === TARJETA ADMIN === */
+.admin-card {
+    background: #141414;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 3rem 4rem;
+    margin-bottom: 3rem;
+}
+
+.service-card {
+    background: #141414;
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    margin-top: -25px;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.service-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* === TAGS === */
+.tag {
+    padding: 3px 10px;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+.tag-corte {
+    background: #1e40af;
+}
+
+.tag-extra {
+    background: #7f1d1d;
+}
+
+/* === ACCIONES EN TARJETA === */
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: var(--spacing-md);
+}
+
+.actions .btn-small {
+    flex: 1;
+}

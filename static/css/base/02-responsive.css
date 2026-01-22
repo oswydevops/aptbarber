@@ -1,0 +1,263 @@
+/* ================================================ */
+/* RESPONSIVE - MEDIAQUERIESGENÉRICAS               */
+/* ================================================ */
+
+/* === PC 18" y superior (2560px+) === */
+@media (min-width: 2560px) {
+    .container {
+        max-width: 1800px;
+    }
+    .hero-title {
+        font-size: 5rem;
+    }
+    .big-word {
+        font-size: 13rem;
+    }
+}
+
+/* === PC 15" y 18" (1920px) === */
+@media (max-width: 1920px) and (min-width: 1367px) {
+    .container {
+        max-width: 1600px;
+    }
+}
+
+/* === PC 14" (1366px) === */
+@media (max-width: 1366px) and (min-width: 1025px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* === LAPTOP GENERAL === */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    .hero-content {
+        padding: 0 var(--spacing-md);
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        max-width: 1000px;
+    }
+    .page-title {
+        font-size: 4.2rem;
+    }
+    .categoria-titulo {
+        font-size: 3.4rem;
+    }
+    .servicios-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .footer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .admin-container {
+        padding: 6rem 1rem 4rem;
+    }
+    .admin-title {
+        font-size: 3.5rem;
+    }
+}
+
+/* === TABLET & MOBILE GRANDE (868px) === */
+@media (max-width: 868px) {
+    .nav-desktop {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .hero-title {
+        font-size: 5.5rem;
+    }
+    .big-word {
+        font-size: 7rem;
+    }
+    .small-title {
+        font-size: 1.6rem;
+    }
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+    .section-title {
+        font-size: 3.5rem;
+        margin-bottom: 3rem;
+    }
+    .gallery-section {
+        padding: 8rem 0 6rem;
+    }
+}
+
+/* === TABLET (768px) === */
+@media (max-width: 768px) {
+    .header {
+        margin-left: 65px;
+    }
+    .hamburger {
+        margin-right: 20px;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .section-title {
+        font-size: 3rem;
+    }
+    .servicios-page {
+        padding: 8rem 0 6rem;
+    }
+    .page-title {
+        font-size: 3rem;
+    }
+    .categoria-titulo {
+        font-size: 1rem;
+    }
+    .card {
+        padding: 2.5rem 1.8rem;
+    }
+    .precio {
+        font-size: 2rem;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-2026 {
+        padding: 50px 0 30px;
+    }
+    .admin-container {
+        padding: 5rem 1rem 3rem;
+    }
+    .admin-title {
+        font-size: 3rem;
+    }
+}
+
+/* === MÓVIL MEDIANO (414px) === */
+@media (max-width: 414px) {
+    .hero-title {
+        font-size: 4.2rem;
+    }
+    .big-word {
+        font-size: 5.2rem;
+    }
+    .hero-btn {
+        font-size: 1.2rem !important;
+        padding: 1.2rem 2.5rem !important;
+    }
+    .page-title {
+        font-size: 3.2rem;
+    }
+    .categoria-titulo {
+        font-size: 2.6rem;
+    }
+    .servicios-grid {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        padding: 2.8rem 2rem;
+    }
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    .gallery-item {
+        min-width: 250px;
+    }
+    .gallery-item img {
+        height: 350px;
+    }
+}
+
+/* === MÓVIL PEQUEÑO (375px) === */
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 3.8rem;
+    }
+    .big-word {
+        font-size: 4.5rem;
+    }
+    .small-title {
+        font-size: 1.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .hero-btn {
+        font-size: 1.1rem !important;
+        padding: 1rem 2rem !important;
+    }
+    .page-title {
+        font-size: 2.8rem;
+    }
+    .categoria-titulo {
+        font-size: 2.4rem;
+    }
+    .card {
+        padding: 2.5rem 1.5rem;
+    }
+    .precio {
+        font-size: 2.5rem;
+    }
+    .section-title {
+        font-size: 2.8rem;
+    }
+    .gallery-item {
+        min-width: 200px;
+    }
+    .gallery-item img {
+        height: 280px;
+    }
+}
+
+/* === MÓVIL MUY PEQUEÑO (320px) === */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    .big-word {
+        font-size: 4rem;
+    }
+    .small-title {
+        font-size: 1.1rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .hero-btn {
+        font-size: 1rem !important;
+        padding: 0.9rem 1.8rem !important;
+    }
+    .page-title {
+        font-size: 2.5rem;
+    }
+    .categoria-titulo {
+        font-size: 2.2rem;
+    }
+    .card {
+        padding: 2rem 1.2rem;
+    }
+    .precio {
+        font-size: 2.3rem;
+    }
+    .section-title {
+        font-size: 2.5rem;
+    }
+    .container {
+        padding: 0 0.8rem;
+    }
+    .gallery-item {
+        min-width: 180px;
+    }
+    .gallery-item img {
+        height: 250px;
+    }
+    .admin-container {
+        padding: 4rem 0.5rem 2rem;
+    }
+    .admin-title {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,108 @@
+/* ================================================ */
+/* PÁGINAS - PANEL ADMINISTRADOR                    */
+/* ================================================ */
+
+/* === ESTRUCTURA GENERAL === */
+.admin-dashboard {
+    background: #000;
+    min-height: 100vh;
+    color: #ddd;
+    font-family: var(--font-primary);
+}
+
+.admin-container {
+    padding: 7rem 2rem 6rem;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+/* === HEADER ADMIN === */
+.dashboard-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.admin-title {
+    font: 900 4rem var(--font-display), sans-serif;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+/* === CARDS ADMIN === */
+.card-service,
+.card-gallery {
+    width: 100%;
+}
+
+/* === GRID SERVICIOS === */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 45px;
+}
+
+@media (min-width: 640px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.service-card {
+    margin-top: -25px;
+}
+
+/* === DESCRIPCIÓN EN TARJETA === */
+.description {
+    font-size: 0.75rem;
+    color: #999;
+    font-style: italic;
+}
+
+/* === FOOTER ADMIN === */
+.footer {
+    text-align: center;
+    padding: var(--spacing-md) 0;
+    font-size: 0.9rem;
+    color: #aaa;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+}
+
+/* === GRID RELATIVO === */
+.relative {
+    position: relative;
+}
+
+.group {
+    position: relative;
+}
+
+.group:hover .group-hover {
+    opacity: 1;
+}
+
+/* === OVERLAY GALERÍA === */
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
